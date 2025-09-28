@@ -42,4 +42,20 @@ class ContactManager
 
         return $stmt->execute([':id' => $id]);
     }
+
+    public function update(array $params): bool
+    {
+        $sql = <<<SQLREQUEST
+        UPDATE contact
+        SET
+            name = COALESCE(:name, name),
+            email = COALESCE(:email, email),
+            phone_number = COALESCE(:phone_number, phone_number)
+        WHERE id = :id
+        SQLREQUEST;
+
+        $stmt = $this->db->prepare($sql);
+
+        return $stmt->execute($params);
+    }
 }

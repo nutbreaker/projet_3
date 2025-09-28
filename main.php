@@ -9,7 +9,7 @@ $contactManager = new ContactManager($db);
 $command = new Command($contactManager);
 
 while (true) {
-    $line = readline("Entrez votre commande : ");
+    $line = readline("Entrez votre commande (help, list, detail, create, update, delete, quit) : ");
     list($commandArg, $args) = array_pad(explode(" ", $line, 2), 2, null);
 
     try {
@@ -18,6 +18,9 @@ while (true) {
             'detail' => $command->detail($args),
             'create' => $command->create($args),
             'delete' => $command->delete($args),
+            'update' => $command->update($args),
+            'help' => $command->help(),
+            'quit' => $command->quit(),
             default => "Vous avez saisi : $line\n",
         };
 

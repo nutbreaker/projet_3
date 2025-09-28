@@ -14,14 +14,15 @@ class Command
     {
         $contacts = $this->contactManager->findAll();
 
-        foreach ($contacts as $contact) {
-            echo ($contact . "\n");
-        }
+        echo ("\nListe des contacts :\n\n");
+        echo ("id, name, email, phone number\n");
+        echo (implode("\n", $contacts));
+        echo ("\n\n");
     }
 
     public function detail(string $id): void
     {
-        echo ($this->contactManager->findById(intval($id))) . "\n";
+        echo ("\n" . $this->contactManager->findById(intval($id)) . "\n\n");
     }
 
     public function create(string|null $params): void
@@ -42,6 +43,7 @@ class Command
 
         echo ("\n");
     }
+
     public function delete(string|null $params)
     {
         if (empty($params)) return;
@@ -49,5 +51,45 @@ class Command
         $this->contactManager->delete(intval(trim($params)));
 
         echo ("\n");
+    }
+
+    public function update(string|null $params)
+    {
+        list($id, $name, $email, $phone_number) = array_pad(
+            explode(',', $params, 4),
+            4,
+            null
+        );
+
+        if (empty($id)) return;
+
+        $this->contactManager->update([
+            'id' =>  trim($id),
+            'name' =>  trim($name)?: null,
+            'email' =>  trim($email)?: null,
+            'phone_number' =>  trim($phone_number)?: null
+        ]);
+    }
+
+    public function help()
+    {
+        $help = <<<HELP
+
+        help : affiche cette aide
+        list : liste les contacts
+        create [name], [email], [phone number] : crée un contact
+        update [id], [name], [email], [phone number] : met à jour un contact
+        delete [id] : supprime un contact
+        quit : quitte le programme
+
+
+        HELP;
+
+        echo ($help);
+    }
+
+    public function quit()
+    {
+        exit();
     }
 }
