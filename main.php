@@ -10,10 +10,14 @@ $command = new Command($contactManager);
 
 while (true) {
     $line = readline("Entrez votre commande : ");
+    list($commandArg, $args) = array_pad(explode(" ", $line, 2), 2, null);
 
     try {
-        $result = match ($line) {
+        $result = match ($commandArg) {
             'list' => $command->list(),
+            'detail' => $command->detail($args),
+            'create' => $command->create($args),
+            'delete' => $command->delete($args),
             default => "Vous avez saisi : $line\n",
         };
 
