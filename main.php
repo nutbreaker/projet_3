@@ -1,5 +1,15 @@
 <?php
+
 while (true) {
     $line = readline("Entrez votre commande : ");
-    echo "Vous avez saisi : $line\n";
+
+    try {
+        $result = match ($line) {
+            'list' => "affichage de la liste\n",
+            default => "Vous avez saisi : $line\n",
+        };
+
+        echo ($result);
+    } catch (\UnhandledMatchError $e) {
+    }
 }
