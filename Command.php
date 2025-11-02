@@ -75,13 +75,13 @@ class Command
     {
         $help = <<<HELP
 
-        help : affiche cette aide
-        list : liste les contacts
-        detail [id] : affiche les détails d'un contact
-        create [name], [email], [phone number] : crée un contact
-        update [id], [name], [email], [phone number] : met à jour un contact
-        delete [id] : supprime un contact
-        quit : quitte le programme
+        \033[1mhelp\033[0m : affiche cette aide
+        \033[1mlist\033[0m : liste les contacts
+        \033[1mdetail\033[0m [id] : affiche les détails d'un contact
+        \033[1mcreate\033[0m [name], [email], [phone number] : crée un contact
+        \033[1mupdate\033[0m [id], [name], [email], [phone number] : met à jour un contact
+        \033[1mdelete\033[0m [id] : supprime un contact
+        \033[1mquit\033[0m : quitte le programme
 
 
         HELP;
