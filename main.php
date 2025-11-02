@@ -27,7 +27,7 @@ while (true) {
             'update' => $command->update($args),
             'help' => $command->help(),
             'quit' => $command->quit(),
-            default => "Vous avez saisi : $line\n",
+            default => "\nLa commande \033[1m$line\033[0m n'existe pas. Veuillez essayer à nouveau.\n\n",
         };
 
         echo ($result);
