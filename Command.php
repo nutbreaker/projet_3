@@ -77,6 +77,7 @@ class Command
 
         help : affiche cette aide
         list : liste les contacts
+        detail [id] : affiche les détails d'un contact
         create [name], [email], [phone number] : crée un contact
         update [id], [name], [email], [phone number] : met à jour un contact
         delete [id] : supprime un contact
