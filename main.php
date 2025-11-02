@@ -12,6 +12,12 @@ while (true) {
     $line = readline("Entrez votre commande (help, list, detail, create, update, delete, quit) : ");
     list($commandArg, $args) = array_pad(explode(" ", $line, 2), 2, null);
 
+    if ($commandArg === "") {
+        echo "\nAucune commande saisie. Veuillez essayer à nouveau.\n\n";
+
+        continue;
+    }
+
     try {
         $result = match ($commandArg) {
             'list' => $command->list(),
